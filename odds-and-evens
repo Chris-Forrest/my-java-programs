@@ -1,0 +1,48 @@
+import java.util.*;
+public class OddsAndEvens {
+
+	public static void main(String[] args) {
+		Scanner Input = new Scanner(System.in);
+		System.out.println();
+	System.out.println("Let's play Odds and evens");
+	System.out.print("What's your name?");
+	String name = Input.next();
+	System.out.println("Hello "+name+" lets play");
+	System.out.print(name+" please select o for odds or e for evens.");
+	String playerSelection = Input.next();
+	if (playerSelection.equals("o")) {
+		System.out.println(name+" has choosen odds the computer will be even.");
+		}else {
+			System.out.println(name+" has choosen even the computer will be odd.");
+		}
+	System.out.println("--------------------------------------------");
+	System.out.println();
+	Random rand = new Random();
+	int computerNumber = rand.nextInt(6);
+	System.out.println(name+" select a number from 0 to five to play");
+	int playerNumber = Input.nextInt();
+	System.out.println(name+" chooses "+playerNumber  +" the computer chooses "+computerNumber);
+	System.out.println();
+	int finalScore = playerNumber + computerNumber;
+	System.out.println("The final score was "+finalScore);
+	boolean oddOrEven = finalScore % 2 ==0;
+	if (oddOrEven) {
+		System.out.println(finalScore +" is even");
+		if (playerSelection.equals("e")) {
+			System.out.println(name+" wins!");
+		}else {
+			System.out.println("The computer wins");
+		}
+	} else {
+		System.out.println(finalScore+" is odd.");
+		if (playerSelection.equals("o")) {
+			System.out.println(name+" wins!");
+		} else {
+			System.out.println("The computer wins.");
+		}
+	}
+}
+	}
+
+
+
