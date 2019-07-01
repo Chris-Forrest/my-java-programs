@@ -1,0 +1,83 @@
+import java.util.*;
+
+public class crypto {
+
+	public static void main(String[] args) {
+		System.out.println("This is a simple encryption program");	  
+       System.out.println("Enter some text to have it encrypted");
+       Scanner input = new Scanner(System.in);
+       String userInput = input.nextLine();
+       System.out.println("Enter a number for the caesar cypher.");
+       int shift = input.nextInt();
+       System.out.println("Enter the number of letters per group.");
+       int groups = input.nextInt();
+       String cyphertext = encryptString(userInput, shift, groups);
+	    System.out.println("This is your encrypted text: " + cyphertext);
+	   
+	}
+		
+	
+	public static String normalizeText(String userInput) {
+			userInput = userInput.replaceAll("[^A-Za-z]","");
+             userInput = userInput.toUpperCase();
+            // System.out.println("This is your text normalized. "+userInput);
+             return userInput;
+		}
+	public static String shiftAlphabet(int shift) {
+	    int start = 0;
+	    if (shift < 0) {
+	        start = (int) 'Z' + shift + 1;
+	    } else {
+	        start = 'A' + shift;
+	    }
+	    String result = "";
+	    char currChar = (char) start;
+	    for(; currChar <= 'Z'; ++currChar) {
+	        result = result + currChar;
+	    }
+	    if(result.length() < 26) {
+	        for(currChar = 'A'; result.length() < 26; ++currChar) {
+	            result = result + currChar;
+	        }
+	    }
+	    return result;
+	}
+	
+        public static String caesarify(String userInput, int shift) {
+        	 String list = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+     	    String shiftedList = shiftAlphabet(shift);
+     	    StringBuilder result = new StringBuilder();
+     	    for (int i = 0; i < userInput.length(); i++) {
+     	      int index = list.indexOf(userInput.charAt(i));
+     	      result.append(shiftedList.charAt(index));
+     	    }
+     	 // System.out.println("This is your caesarfied text. "+result);
+     	    return result.toString();
+        	}
+        public static String groupify(String userInput, int groups) {
+    	    StringBuilder result = new StringBuilder();
+    	    int textLength = userInput.length();
+    	    for (int i = 0; i < textLength; i++) {
+    	      result.append(userInput.charAt(i));
+    	      if ((i + 1) % groups == 0) {
+    	        result.append(" ");
+    	      }
+    	    }
+    	    if (textLength % groups != 0) {
+    	      for (int i = 0; i < (groups - textLength % groups); i++) {
+    	        result.append('x');
+    	      }
+    	    }
+    	  // System.out.println("This is your ceasarfied and grouped text. "+result);
+    	    return result.toString();
+    	  }       
+        public static String encryptString(String userInput, int shift, int groups) {
+    	    String normText = normalizeText(userInput);
+    	    String cypherText = caesarify(normText, shift);
+    	    String result = groupify(cypherText, groups);
+    	   //System.out.println(result);
+    	    return result;
+    	  }
+      
+}
+	
