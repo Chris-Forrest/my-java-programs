@@ -1,0 +1,74 @@
+import java.util.*;
+
+ /* designer Chris Forrest
+ * This is my first program with zero prompting from 
+ * a class or tutorial and I will be trying to 
+ * implement best practices when it comes to 
+ * the writing and commenting of the project
+ */
+
+public class RockPaperScissors {
+	
+	
+
+	public static void main(String[] args) {
+		
+		Scanner Input = new Scanner (System.in);
+		System.out.println("Hello this my first attempt at building a game from scratch.");
+		System.out.println("I'm keeping it simple and just doing a rock,paper,scissors game.");
+		System.out.print("Let's get started please type your name.");
+		String name = Input.next();
+		
+		
+    game( name );	
+    System.out.println("Would you like to play again yes or no.");
+        String replay = Input.next();
+        while (replay.equals("yes")) {
+        	game( name );
+        	System.out.println( " Would you like to play again yes or no.");
+        	replay = Input.next();
+        }
+        if ( replay.equals( "no")) {
+        	System.out.println("Thanks for trying my game. I hope you enjoyed it.");
+        }    
+		
+			
+	}
+			
+		 public static void game(String name ) {
+			 Random rand = new Random ();
+				int computerNumber = rand.nextInt(9);
+				int result = 0 ;
+				
+		    if ( computerNumber <= 2 ) {
+			    result = 1;
+				}
+			else if ( computerNumber <= 5 && computerNumber > 2 ) {
+			     result = 2;
+			}
+			else if ( computerNumber <= 9 && computerNumber > 5 ) {
+				 result = 3;
+			}  
+			 int compChoice = result;
+		    	Scanner Input = new Scanner (System.in);
+			System.out.println("Alright " + name + " please type a 1 for rock, 2 for paper or 3 for scissors.");
+			int playerChoice = Input.nextInt();
+			System.out.println("The computer plays " + result + ".");
+			if( playerChoice == compChoice ) {
+				System.out.println( "It's a draw." );
+			}
+			 if ( playerChoice == 1  && compChoice == 3 ||
+					  playerChoice == 3 && compChoice == 2 ||
+					  playerChoice == 2 && compChoice == 1 ) {
+				System.out.println("Congratulations " + name + " you win!");
+			}
+			  if( playerChoice == 1 && compChoice == 2 ||
+					  playerChoice == 2 && compChoice == 3 ||
+					  playerChoice == 3 && compChoice == 1) {
+				 System.out.println("The computer wins.");
+				 
+			 }
+			
+			}
+	}
+		
