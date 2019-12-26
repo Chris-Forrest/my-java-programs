@@ -1,10 +1,8 @@
 import java.util.*;
 
  /* designer Chris Forrest
- * This is my first program with zero prompting from 
- * a class or tutorial and I will be trying to 
- * implement best practices when it comes to 
- * the writing and commenting of the project
+ * This is my first program 
+ * java or otherwise 
  */
 
 public class RockPaperScissors {
